@@ -1,49 +1,13 @@
 import { ArrowUpRight } from "lucide-react"
 import { GithubIcon } from "@/components/Icons"
-
-type Project = {
-  title: string
-  description: string
-  tags: string[]
-  image: string
-  href: string
-  repo: string
-}
-
-const projects: Project[] = [
-  {
-    title: "The LoreVault Market",
-    description:
-      "An e-commerce platform built on a microservices architecture, handling catalog, orders, and payments as independent services.",
-    tags: ["NestJS", "React", "Microservices"],
-    image: "/textures/lorevault.png",
-    href: "https://example.com",
-    repo: "https://github.com",
-  },
-  {
-    title: "React Performance Lab",
-    description:
-      "A dashboard demonstrating render optimization patterns — memoization, virtualization, and profiling in a live playground.",
-    tags: ["Vite", "TypeScript", "Tailwind"],
-    image: "/textures/perflab.png",
-    href: "https://example.com",
-    repo: "https://github.com",
-  },
-  {
-    title: "FastAPI Analyzer",
-    description:
-      "A document analysis microservice that extracts structure and metadata from uploads via an async processing pipeline.",
-    tags: ["Python", "FastAPI"],
-    image: "/textures/fastapi.png",
-    href: "https://example.com",
-    repo: "https://github.com",
-  },
-]
+import { Link } from "react-router"
+import { projects, type Project } from "@/data/projects.data"
 
 function ProjectCard({ project, priority }: { project: Project; priority?: boolean }) {
   return (
     <article className="group flex flex-col border border-border bg-card transition-colors hover:border-primary">
       <div className="relative aspect-16/10 overflow-hidden border-b border-border">
+      <Link to={`/projects/${project.slug}`}>
         <img
           src={project.image || "/placeholder.svg"}
           alt={`${project.title} screenshot`}
@@ -51,6 +15,7 @@ function ProjectCard({ project, priority }: { project: Project; priority?: boole
           className="absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity group-hover:opacity-100"
           sizes="(min-width: 768px) 50vw, 100vw"
         />
+      </Link>
       </div>
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-start justify-between gap-4">
@@ -97,6 +62,7 @@ function ProjectCard({ project, priority }: { project: Project; priority?: boole
 }
 
 export const Projects = () => {
+
   return (
     <section id="projects" className="border-b border-border">
       <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
