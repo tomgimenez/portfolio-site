@@ -58,7 +58,7 @@ export function Contact() {
           })}
         </ul>
         <p className="mt-16 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Tomas Gimenez — {new Date().getFullYear()}
+          Tomás Giménez — {new Date().getFullYear()}
         </p>
       </div>
     </section>
