@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "An e-commerce platform built on a microservices architecture, handling catalog, orders, and payments as independent services.",
     tags: ["NestJS", "React", "Microservices"],
     image: "/the-lore-vault-3.png",
-    href: "https://example.com",
+    href: "https://lore-vault.tomasgimenez.com/",
     repo: "https://github.com/tomgimenez/e-commerce-frontend",
     overview: [
       "The LoreVault Market is a production-grade e-commerce platform for collectible tabletop and lore-driven merchandise. It was designed from the ground up as a distributed system, where each business capability — catalog, cart, orders, payments, and notifications — runs as an independent, individually deployable service.",
