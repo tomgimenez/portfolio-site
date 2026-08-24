@@ -25,7 +25,7 @@ export const projects: Project[] = [
     role: "Lead Full-Stack Developer",
     description:
       "An e-commerce platform built on a microservices architecture, handling catalog, orders, and payments as independent services.",
-    tags: ["NestJS", "React", "Microservices"],
+    tags: ["NestJS", "React", "PostgreSQL", "Microservices"],
     image: "/the-lore-vault-3.png",
     href: "https://lore-vault.tomasgimenez.com/",
     repo: "https://github.com/tomgimenez/e-commerce-frontend",
@@ -123,59 +123,59 @@ export const projects: Project[] = [
       { value: "8", label: "Patterns demoed" },
     ],
   },
-  // {
-  //   slug: "fastapi-analyzer",
-  //   title: "FastAPI Analyzer",
-  //   year: "2023",
-  //   role: "Backend Developer",
-  //   description:
-  //     "A document analysis microservice that extracts structure and metadata from uploads via an async processing pipeline.",
-  //   tags: ["Python", "FastAPI"],
-  //   image: "/textures/fastapi.png",
-  //   href: "https://example.com",
-  //   repo: "https://github.com",
-  //   overview: [
-  //     "FastAPI Analyzer is a backend microservice that ingests documents — PDFs, scans, and office files — and returns structured metadata: detected sections, tables, key entities, and a normalized text representation. It's designed to sit behind a queue and process work asynchronously so large uploads never block the API.",
-  //     "It started as an internal tool to replace a brittle, synchronous parsing script and grew into a reusable service with a clean OpenAPI contract.",
-  //   ],
-  //   challenge:
-  //     "The original parser ran inline in a request handler, so a single large PDF could tie up a worker for minutes and time out the client. There was no retry logic, no progress visibility, and no way to scale parsing independently from the API.",
-  //   solution:
-  //     "I split ingestion from processing: uploads are accepted, validated, and pushed onto a task queue, returning a job ID immediately. Background workers pull jobs, run the extraction pipeline, and write results to storage. Clients poll a status endpoint or receive a webhook on completion. FastAPI's async stack and Pydantic models keep the contract strict and self-documenting.",
-  //   features: [
-  //     {
-  //       title: "Async job pipeline",
-  //       detail:
-  //         "Uploads return a job ID instantly; workers process documents in the background and report progress, so the API stays responsive under heavy load.",
-  //     },
-  //     {
-  //       title: "Typed, self-documenting API",
-  //       detail:
-  //         "Pydantic models generate an accurate OpenAPI spec automatically, giving consumers a precise contract and interactive docs out of the box.",
-  //     },
-  //     {
-  //       title: "Resilient extraction",
-  //       detail:
-  //         "Each pipeline stage is retryable and isolated, so a failure parsing one section doesn't discard the work already done on the rest.",
-  //     },
-  //     {
-  //       title: "Pluggable extractors",
-  //       detail:
-  //         "Format handlers are registered through a simple interface, making it straightforward to add support for new document types.",
-  //     },
-  //   ],
-  //   stack: [
-  //     { label: "Core", items: ["Python", "FastAPI", "Pydantic", "asyncio"] },
-  //     { label: "Processing", items: ["Celery", "Redis", "PyMuPDF"] },
-  //     { label: "Storage", items: ["PostgreSQL", "S3-compatible blob"] },
-  //     { label: "Quality", items: ["pytest", "mypy", "Ruff"] },
-  //   ],
-  //   metrics: [
-  //     { value: "~3s", label: "Avg parse time" },
-  //     { value: "100%", label: "Async throughput" },
-  //     { value: "6", label: "File formats" },
-  //   ],
-  // },
+  {
+    slug: "digit-recognizer",
+    title: "Digit Recognizer",
+    year: "2026",
+    role: "Fullstack Engineer",
+    description:
+      "Application that recognizes handwritten digits in real time through a Machine Learning model.",
+    tags: ["Machine Learning", "Python", "Sci-kit Learn", "Logistic Regression"],
+    image: "/digit-recognizer.png",
+    href: "https://digit-recognizer-frontend.onrender.com",
+    repo: "https://github.com/tomgimenez/digit-recognizer",
+    overview: [
+      "Digit Recognizer is a full-stack application that recognizes handwritten digits in real time. ",
+      "The user draws a number on a canvas, and a Machine Learning model trained on the MNIST dataset predicts which digit it is, along with the full probability distribution across all 10 possible classes.",
+      "The model is trained using scikit-learn, specifically LogisticRegression, the same logistic regression algorithm covered in the theory, applied here to a multiclass classification problem"
+    ],
+    challenge:
+      "This project started as a hands-on exercise to apply, end to end, the core concepts from a first Machine Learning course: supervised learning, logistic regression, cost functions, and gradient descent.",
+    solution:
+      "The goal wasn't to build something innovative, but to prove the ability to take those theoretical concepts and turn them into a real, usable, interactive application — from training the model to a UI that anyone can actually try out.",
+    features: [
+      {
+        title: "Live handwritten digit prediction",
+        detail: "Draw a digit on an interactive canvas and get an instant prediction from a logistic regression model trained on MNIST, along with the full confidence distribution across all 10 classes.",
+      },
+      {
+        title: "Robust image preprocessing pipeline",
+        detail: "A custom preprocessing pipeline replicates the MNIST format from raw canvas input: automatic background polarity detection, bounding-box cropping, aspect-ratio-preserving resize, center-of-mass centering, and contrast stretching.",
+      },
+      {
+        title: "Confidence breakdown, not just a label",
+        detail: "Every prediction returns a probability score for all 10 digits, visualized as a ranked bar chart, showing how the model actually reasons instead of just outputting a single guess.",
+      },
+      {
+        title: "Real-time latency tracking",
+        detail: "The UI measures and displays end-to-end request latency for every prediction, giving visibility into real-world model performance, not just accuracy on a test set.",
+      },
+      {
+        title: "Sorayama-inspired chrome UI",
+        detail: "A distinctive, robotic/chrome interface generated with v0, moving away from generic ML-demo aesthetics.",
+      }
+    ],
+    stack: [
+      { label: "Backend", items: ["Python", "FastAPI"] },
+      { label: "Frontend", items: ["React", "TypeScript", "Vite"] },
+      { label: "Tooling", items: ["Sci-kit Learn", "MNIST", "NumPy", "Joblib"] },
+    ],
+    metrics: [
+      { value: "92%", label: "Test accuracy" },
+      { value: "70K", label: "Training images (MNIST)" },
+      { value: "784", label: "Input features per image" },
+    ],
+  },
 ]
 
 export function getProject(slug: string): Project | undefined {
